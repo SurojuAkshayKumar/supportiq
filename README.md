@@ -1,98 +1,118 @@
-Copy this into your `README.md` file.
+# 🚀 SupportIQ — AI-Powered Customer Support Insight Platform
 
-````markdown
-# SupportIQ: AI-Powered Customer Support Insight Platform
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
+![Streamlit](https://img.shields.io/badge/Streamlit-Frontend-red)
+![Docker](https://img.shields.io/badge/Docker-Containerization-blue)
+![SQLite](https://img.shields.io/badge/SQLite-Database-lightgrey)
 
-SupportIQ is an AI-powered customer support insight platform built for a mid-sized e-commerce/support company. The system analyzes customer support messages, categorizes issues, detects sentiment and frustration, calculates revenue impact, and generates suggested responses for support agents.
+SupportIQ is an AI-powered customer support insight platform designed for e-commerce and support-based businesses.
 
----
-
-## Project Overview
-
-E-commerce companies receive many customer messages through chat, email, and web tickets. It becomes difficult for support teams and leadership to understand:
-
-- What customers are complaining about
-- Which issues are increasing
-- Which problems affect revenue the most
-- How support agents should respond
-
-SupportIQ solves this by converting customer messages into actionable business insights.
+The platform analyzes customer support tickets, detects customer sentiment and frustration, categorizes issues, estimates revenue impact, and generates suggested responses for support agents.
 
 ---
 
-## Deployed Demo
+# 📌 Project Overview
 
-### Frontend Dashboard
+Modern e-commerce companies receive thousands of customer messages through:
 
+- Email
+- Chat support
+- Website tickets
+
+It becomes difficult for support teams to identify:
+
+- Common customer complaints
+- Increasing issue trends
+- Revenue-impacting problems
+- Urgent frustrated customers
+- Best response strategies
+
+SupportIQ converts raw customer messages into actionable business insights using AI and analytics.
+
+---
+
+# 🌐 Live Deployment
+
+## Frontend Dashboard
+
+```text
 https://supportiq-frontend.onrender.com
+```
 
-### Backend API Documentation
+## Backend API Documentation
 
+```text
 https://supportiq-backend-7ouo.onrender.com/docs
+```
 
-### Backend Health Check
+## Backend Health Check
 
+```text
 https://supportiq-backend-7ouo.onrender.com/health
+```
 
 ---
 
-## GitHub Repository
+# 🔗 GitHub Repository
 
+```text
 https://github.com/SurojuAkshayKumar/supportiq
+```
 
 ---
 
-## Dataset
+# 📂 Dataset Information
 
-The project uses a public spam/ham email dataset as the base text dataset.
+The project uses a public spam/ham email dataset as the base dataset.
 
-The dataset contains:
+### Dataset Includes
 
 - 5,171 email messages
-- spam/ham labels
-- email text
+- Spam/Ham labels
+- Email text content
 
-Since the original dataset is email-based and does not directly contain customer support ticket fields, it was enriched into a support-ticket style dataset.
+The dataset was enriched into a customer-support style dataset.
 
-Additional fields added:
+### Additional Fields Added
 
-- ticket_id
-- timestamp
-- customer_id
-- channel
-- product
-- order_value
-- customer_country
-- resolution_status
-- agent_reply
-
-The original email text is used as the customer message.
+- `ticket_id`
+- `timestamp`
+- `customer_id`
+- `channel`
+- `product`
+- `order_value`
+- `customer_country`
+- `resolution_status`
+- `agent_reply`
 
 ---
 
-## Features
-
-### AI / Data Understanding
+# 🧠 AI Features
 
 The AI pipeline performs:
 
-- Text cleaning
-- Data enrichment
-- Ticket categorization
-- Sentiment detection
-- Frustration level detection
-- Recurring issue extraction
-- Revenue impact calculation
-- Suggested agent response generation
+- ✅ Text Cleaning
+- ✅ Data Enrichment
+- ✅ Ticket Categorization
+- ✅ Sentiment Detection
+- ✅ Frustration Detection
+- ✅ Revenue Impact Analysis
+- ✅ Recurring Issue Extraction
+- ✅ Suggested Response Generation
 
-Ticket categories include:
+---
+
+# 🏷️ Ticket Categories
+
+SupportIQ classifies tickets into categories such as:
 
 - Delivery Delay
 - Refund Issue
 - Damaged Product
 - Wrong Item
 - Payment Failure
-- Return or Exchange
+- Return/Exchange
 - Product Quality
 - Account/Login Issue
 - Technical Issue
@@ -102,28 +122,35 @@ Ticket categories include:
 
 ---
 
-## Software Application
+# 🏗️ Software Architecture
 
-The project includes a FastAPI backend and Streamlit frontend.
+The project contains:
 
-### Backend
+- FastAPI Backend
+- Streamlit Frontend
+- AI Processing Pipeline
+- SQLite Database
 
-The backend is built using FastAPI.
+---
+
+# ⚙️ Backend APIs
 
 Available API endpoints:
 
-- `GET /health`
-- `POST /upload`
-- `POST /process`
-- `GET /insights`
-- `GET /tickets`
-- `POST /suggest-response`
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/health` | Health check |
+| POST | `/upload` | Upload tickets |
+| POST | `/process` | Process tickets |
+| GET | `/insights` | Retrieve insights |
+| GET | `/tickets` | Fetch tickets |
+| POST | `/suggest-response` | Generate AI response |
 
-### Frontend
+---
 
-The frontend dashboard is built using Streamlit.
+# 📊 Frontend Dashboard Features
 
-Dashboard pages:
+The Streamlit dashboard provides:
 
 - Backend Status
 - Upload & Process Tickets
@@ -136,9 +163,7 @@ Dashboard pages:
 
 ---
 
-## Data Pipeline
-
-The data pipeline follows this flow:
+# 🔄 Data Pipeline Flow
 
 ```text
 Raw Dataset
@@ -154,32 +179,11 @@ CSV + SQLite Storage
 FastAPI Backend
     ↓
 Streamlit Dashboard
-````
-
-Pipeline files:
-
-* `ai_support_pipeline.py` processes the dataset and creates `processed_tickets.csv`
-* `database_pipeline.py` stores processed data into SQLite
-* `supportiq.db` contains the structured `tickets` table
+```
 
 ---
 
-## Tech Stack
-
-* Python
-* FastAPI
-* Streamlit
-* pandas
-* Plotly
-* VADER Sentiment
-* SQLite
-* Docker
-* GitHub Actions
-* Render
-
----
-
-## Project Structure
+# 📁 Project Structure
 
 ```text
 supportiq/
@@ -215,51 +219,75 @@ supportiq/
 
 ---
 
-## How to Run Locally
+# 🛠️ Tech Stack
 
-### 1. Create and activate virtual environment
+| Technology | Purpose |
+|---|---|
+| Python | Core Programming |
+| FastAPI | Backend APIs |
+| Streamlit | Frontend Dashboard |
+| Pandas | Data Processing |
+| Plotly | Visualization |
+| SQLite | Database |
+| Docker | Containerization |
+| GitHub Actions | CI/CD |
+| Render | Cloud Deployment |
+
+---
+
+# ▶️ Running Locally
+
+## 1️⃣ Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-On Windows:
+### Activate Environment (Windows)
 
 ```bash
 venv\Scripts\activate
 ```
 
-### 2. Install dependencies
+---
+
+## 2️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run AI processing pipeline
+---
+
+## 3️⃣ Run AI Processing Pipeline
 
 ```bash
 python ai_support_pipeline.py
 ```
 
-This creates:
+Creates:
 
 ```text
 processed_tickets.csv
 ```
 
-### 4. Run database pipeline
+---
+
+## 4️⃣ Run Database Pipeline
 
 ```bash
 python database_pipeline.py
 ```
 
-This creates:
+Creates:
 
 ```text
 supportiq.db
 ```
 
-### 5. Start FastAPI backend
+---
+
+## 5️⃣ Start FastAPI Backend
 
 ```bash
 uvicorn backend_api:app --reload
@@ -271,9 +299,9 @@ Open:
 http://127.0.0.1:8000/docs
 ```
 
-### 6. Start Streamlit frontend
+---
 
-Open a second terminal and run:
+## 6️⃣ Start Streamlit Frontend
 
 ```bash
 streamlit run app.py
@@ -287,7 +315,7 @@ http://localhost:8501
 
 ---
 
-## How to Run with Docker
+# 🐳 Running with Docker
 
 Make sure Docker Desktop is running.
 
@@ -295,17 +323,21 @@ Make sure Docker Desktop is running.
 docker compose up --build --force-recreate
 ```
 
-Docker URLs:
+## Docker URLs
+
+### Backend API Docs
 
 ```text
-Backend API Docs:
 http://127.0.0.1:8010/docs
+```
 
-Frontend Dashboard:
+### Frontend Dashboard
+
+```text
 http://127.0.0.1:8520
 ```
 
-Stop containers:
+### Stop Containers
 
 ```bash
 docker compose down
@@ -313,13 +345,13 @@ docker compose down
 
 ---
 
-## Cloud Deployment
+# ☁️ Cloud Deployment
 
-The project is deployed on Render using Docker-based web services.
+The project is deployed on Render using Docker-based services.
 
-### Backend
+## Backend Deployment
 
-The backend is deployed using:
+Uses:
 
 ```text
 Dockerfile.backend
@@ -331,15 +363,11 @@ Backend URL:
 https://supportiq-backend-7ouo.onrender.com
 ```
 
-Backend docs:
+---
 
-```text
-https://supportiq-backend-7ouo.onrender.com/docs
-```
+## Frontend Deployment
 
-### Frontend
-
-The frontend is deployed using:
+Uses:
 
 ```text
 Dockerfile.frontend
@@ -351,67 +379,63 @@ Frontend URL:
 https://supportiq-frontend.onrender.com
 ```
 
-The frontend connects to the backend using the environment variable:
-
-```text
-API_URL=https://supportiq-backend-7ouo.onrender.com
-```
-
 ---
 
-## CI/CD Pipeline
+# 🔄 CI/CD Pipeline
 
-The project includes a GitHub Actions CI pipeline located at:
+GitHub Actions workflow:
 
 ```text
 .github/workflows/ci.yml
 ```
 
-The CI pipeline runs on push and pull request to the `main` branch.
+Pipeline performs:
 
-It performs:
-
-* Repository checkout
-* Python setup
-* Dependency installation
-* AI pipeline execution
-* Database pipeline execution
-* Backend Docker image build
-* Frontend Docker image build
+- Repository checkout
+- Python setup
+- Dependency installation
+- AI pipeline execution
+- Database pipeline execution
+- Docker image build
+- CI validation
 
 ---
 
-## Business Value
+# 📈 Business Value
 
-SupportIQ helps leadership and support teams by providing:
+SupportIQ helps businesses by providing:
 
-* Top complaint categories
-* Sentiment and frustration trends
-* Revenue impact by issue category
-* Ticket-level summaries
-* Suggested support responses
+- Top complaint categories
+- Sentiment trends
+- Frustration analytics
+- Revenue impact insights
+- Suggested support responses
+- Ticket prioritization
 
-The system can reduce support costs by automating ticket categorization, helping agents respond faster, and prioritizing urgent tickets.
+Benefits include:
 
-It can improve revenue and retention by identifying high-impact customer issues and reducing customer frustration.
-
----
-
-## Key Metrics Tracked
-
-* Total ticket volume
-* Tickets by category
-* Sentiment distribution
-* Frustration level distribution
-* Critical tickets
-* Revenue impact by issue category
-* Top recurring issue keywords
-* Suggested response output
-* Resolution status distribution
+- Faster agent responses
+- Reduced support costs
+- Improved customer satisfaction
+- Better retention
+- Faster issue resolution
 
 ---
 
-## Architecture
+# 📊 Key Metrics Tracked
+
+- Total ticket volume
+- Tickets by category
+- Sentiment distribution
+- Frustration distribution
+- Revenue impact by issue
+- Critical ticket count
+- Resolution status
+- Recurring issue keywords
+
+---
+
+# 🧱 System Architecture
 
 ```text
 Raw Dataset
@@ -433,41 +457,40 @@ app.py
 Business Users / Support Agents
 
 Deployment Layer:
-GitHub → GitHub Actions CI/CD → Docker → Render Cloud Deployment
+GitHub → GitHub Actions → Docker → Render
 ```
 
 ---
 
-## Limitations
+# ⚠️ Current Limitations
 
-This is a prototype project. The current version uses rule-based categorization, template-based responses, CSV storage, and SQLite.
+This project is currently a prototype.
 
-For production, the system can be improved with:
+### Future Improvements
 
-* PostgreSQL
-* LLM-based response generation
-* Embeddings and vector search
-* Real-time ticket streaming
-* Authentication
-* Advanced monitoring
-* Auto-scaling
-
----
-
-## Final Deliverables
-
-* GitHub repository
-* Running deployed frontend demo
-* Running deployed backend API
-* Architecture diagram
-* 5–10 minute demo video
-* Design document
+- PostgreSQL integration
+- LLM-based response generation
+- Vector databases & embeddings
+- Real-time streaming
+- Authentication system
+- Advanced monitoring
+- Auto-scaling deployment
 
 ---
 
-## Author
+# 📦 Final Deliverables
 
-Suroju Akshay Kumar
+- GitHub Repository
+- Deployed Frontend
+- Deployed Backend APIs
+- Architecture Diagram
+- Demo Video
+- Design Document
 
-```
-```
+---
+
+# 👨‍💻 Author
+
+## Suroju Akshay Kumar
+
+AI-Powered Customer Support Insight Platform Project
