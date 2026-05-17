@@ -1,4 +1,3 @@
-````markdown
 # 🚀 SupportIQ — AI-Powered Customer Support Insight Platform
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
@@ -55,7 +54,9 @@ https://supportiq-backend-7ouo.onrender.com/health
 
 ---
 
-# 🎥 Project Demo
+# 🎥 Demo Video / Project Drive
+
+Google Drive Link:
 
 ```text
 https://drive.google.com/file/d/1wB7A24wh-dXUK1CV9yQhVZkmdury6LMQ/view?usp=drive_link
@@ -143,6 +144,8 @@ The project contains:
 ---
 
 # ⚙️ Backend APIs
+
+Available API endpoints:
 
 | Method | Endpoint | Description |
 |---|---|---|
@@ -501,4 +504,3 @@ This project is currently a prototype.
 ## Suroju Akshay Kumar
 
 AI-Powered Customer Support Insight Platform Project
-````
