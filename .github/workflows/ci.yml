@@ -1,0 +1,41 @@
+name: SupportIQ CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run AI processing pipeline
+        run: |
+          python ai_support_pipeline.py
+
+      - name: Run database pipeline
+        run: |
+          python database_pipeline.py
+
+      - name: Build backend Docker image
+        run: |
+          docker build -f Dockerfile.backend -t supportiq-backend .
+
+      - name: Build frontend Docker image
+        run: |
+          docker build -f Dockerfile.frontend -t supportiq-frontend .

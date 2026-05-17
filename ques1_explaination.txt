@@ -1,0 +1,67 @@
+For this part of the assignment, I created an AI-powered customer support insight pipeline for a mid-sized e-commerce and support company. The main goal of the project was to help the company better understand customer complaints, identify the most common issues, measure which problems affect revenue the most, and assist support agents in responding more effectively.
+
+The business challenge is that companies receive a large number of customer messages every day through emails, chat systems, and web support tickets. Manually reviewing all these messages takes time and makes it difficult to quickly identify patterns or urgent problems. To solve this, I designed a pipeline that automatically processes customer messages and extracts meaningful insights.
+
+For the dataset, I used a public spam/ham email dataset containing 5,171 rows of email text with spam and non-spam labels. Since the original dataset only included email content and labels, I transformed it into a more realistic customer support dataset by adding business-related fields. This helped simulate how a real support-ticket system would work in a company environment.
+
+The enriched dataset includes fields such as:
+
+* ticket_id
+* timestamp
+* customer_id
+* channel
+* message
+* agent_reply
+* product
+* order_value
+* customer_country
+* resolution_status
+
+The original email text was used as the customer message, while the additional fields were synthetically generated to create a realistic support environment.
+
+One of the main tasks implemented was ticket categorization. The system automatically classifies customer messages into categories such as Delivery Delay, Refund Issue, Damaged Product, Wrong Item, Payment Failure, Return or Exchange, Product Quality, Account/Login Issue, Technical Issue, Promotional/Spam, and General Inquiry.
+
+To achieve this, I used a rule-based keyword matching approach. For example, if a message contains words like “refund,” “credited,” or “reimbursement,” it is categorized as a Refund Issue. Messages containing terms such as “delivery,” “shipping,” “tracking,” or “package” are categorized under Delivery Delay. The original spam/ham label from the dataset was also used to identify Promotional or Spam-related messages.
+
+The second major feature was sentiment and frustration detection. I used VADER sentiment analysis to identify whether customer messages were Positive, Neutral, Negative, or Very Negative. The system also generates a numerical sentiment score for each message.
+
+In addition to sentiment, the system estimates the customer’s frustration level as Low, Medium, High, or Critical. This is determined using both the sentiment score and the presence of strong emotional words such as “urgent,” “worst,” “angry,” “terrible,” “asap,” and “unacceptable.” This helps identify customers who may require immediate attention from support agents.
+
+Another important part of the project was identifying top recurring issues. The system cleans customer messages, removes common stopwords, and extracts frequently used meaningful keywords. This helps identify repeated customer concerns and common complaint patterns. Since the original dataset is email-based, some recurring keywords are related to email content, but the same approach can easily be applied to real customer support data to identify issues related to delivery, refunds, payments, products, or account access.
+
+The pipeline also generates suggested agent responses. Based on the predicted category of the ticket, the system provides a professional and empathetic response template that support agents can use as guidance. For example, customers reporting delivery delays receive responses related to tracking and shipping updates, while refund-related tickets receive responses about refund processing and payment verification.
+
+To understand the business impact of customer issues, I also included a revenue impact analysis. The enriched dataset contains an order_value field, which allows the system to group tickets by issue category and calculate how much revenue is associated with each type of problem. This helps businesses identify which operational issues are causing the highest financial impact.
+
+I chose this hybrid approach of combining public data with synthetic enrichment because publicly available datasets often lack the complete business information needed for real-world support analysis. By enriching the dataset, I was able to create a more realistic support-ticket system while still working with genuine text data.
+
+The rule-based categorization approach was selected because it is simple, explainable, and easy to validate for a prototype system. VADER sentiment analysis was chosen because it is lightweight and performs well on short customer-style messages. Template-based responses were used to avoid dependency on paid large language model APIs and to ensure the project remains fully reproducible.
+
+In the future, this project can be improved by integrating machine learning models, embeddings, vector databases, and large language models. Embeddings could help identify semantically similar tickets and improve ticket search, while LLMs could generate more personalized and context-aware support responses.
+
+The final processed output of the system is saved as a file named processed_tickets.csv. This file contains all enriched support-ticket information along with cleaned messages, predicted categories, sentiment labels, sentiment scores, frustration levels, revenue-related fields, and suggested agent responses.
+-------------------------------------------------------------------
+For this assignment, I built an AI-powered customer support insight pipeline for a mid-sized e-commerce company. The goal was to help the company understand customer complaints, identify common issues, measure revenue impact, and assist support agents in responding efficiently.
+
+I used a public spam/ham email dataset containing 5,171 rows as the base dataset. Since the original dataset only included email text and labels, I enriched it into a realistic support-ticket dataset by adding fields such as ticket_id, timestamp, customer_id, channel, product, order_value, customer_country, and resolution_status.
+
+The system performs several AI-related tasks:
+
+1. **Ticket Categorization**
+   Customer messages are automatically classified into categories such as Delivery Delay, Refund Issue, Payment Failure, Product Quality, Technical Issue, and Promotional/Spam using keyword-based rules.
+
+2. **Sentiment and Frustration Detection**
+   I used VADER sentiment analysis to classify messages as Positive, Neutral, Negative, or Very Negative. The system also detects frustration levels (Low to Critical) based on sentiment scores and frustration-related words like “urgent” or “worst.”
+
+3. **Recurring Issue Detection**
+   The pipeline extracts frequently occurring keywords from customer messages to identify common customer complaints and support trends.
+
+4. **Suggested Agent Responses**
+   Based on the predicted ticket category, the system generates professional and empathetic response suggestions for support agents.
+
+5. **Revenue Impact Analysis**
+   Using the order_value field, the system calculates which issue categories are associated with the highest revenue impact.
+
+I chose a rule-based and lightweight AI approach because it is simple, explainable, and easy to validate for a prototype system. In the future, this project could be improved using machine learning models, embeddings, vector databases, and LLM-based response generation.
+
+The final output is stored in a file called processed_tickets.csv, which contains all processed ticket information, sentiment analysis, issue categories, frustration levels, and suggested responses.

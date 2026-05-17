@@ -1,0 +1,370 @@
+Here is a clean **Question 2 explanation** you can paste into `question2_explanation.txt` or your documentation.
+
+---
+
+# Question 2: Software Development
+
+For this part of the assignment, I built the software application layer of **SupportIQ: AI-Powered Customer Support Insight Platform**.
+
+The requirement was to build a working application that includes a backend, an API for uploading tickets, an API for retrieving insights, an AI processing pipeline, and a lightweight frontend dashboard. The dashboard should show top issues, sentiment trends, ticket summaries, and suggested responses.
+
+## Application Overview
+
+SupportIQ is built as a full-stack prototype using:
+
+```text
+FastAPI backend
+Streamlit frontend
+CSV-based storage
+Python AI/data pipeline
+```
+
+The application uses the processed ticket output generated from the AI pipeline. The backend exposes API endpoints, and the Streamlit frontend communicates with the backend to display business insights and support-agent recommendations.
+
+---
+
+## Backend Implementation
+
+The backend was built using **FastAPI** in the file:
+
+```text
+backend_api.py
+```
+
+FastAPI was chosen because it is lightweight, fast, and suitable for quickly building REST APIs in Python.
+
+The backend provides the following endpoints:
+
+```text
+GET  /health
+POST /upload
+POST /process
+GET  /insights
+GET  /tickets
+POST /suggest-response
+```
+
+### 1. Health Check API
+
+```text
+GET /health
+```
+
+This endpoint confirms that the backend server is running properly.
+
+### 2. Upload Tickets API
+
+```text
+POST /upload
+```
+
+This endpoint allows the user to upload a CSV file. The uploaded file can be either the original spam/ham dataset or a support-ticket style dataset with a message column.
+
+The uploaded file is saved and can then be processed by the AI pipeline.
+
+### 3. Process Tickets API
+
+```text
+POST /process
+```
+
+This endpoint runs the AI processing pipeline. It loads the uploaded dataset or existing dataset, converts it into support-ticket format, performs AI analysis, and saves the final output as:
+
+```text
+processed_tickets.csv
+```
+
+### 4. Retrieve Insights API
+
+```text
+GET /insights
+```
+
+This endpoint retrieves business-level insights from the processed ticket data.
+
+It returns:
+
+```text
+Total tickets
+Total revenue impact
+Top issue categories
+Sentiment summary
+Frustration summary
+Revenue impact by issue category
+Top recurring keywords
+```
+
+### 5. Retrieve Tickets API
+
+```text
+GET /tickets
+```
+
+This endpoint returns ticket-level summaries, including:
+
+```text
+ticket_id
+timestamp
+channel
+product
+customer_country
+message
+predicted_category
+sentiment
+frustration_level
+resolution_status
+order_value
+suggested_response
+```
+
+### 6. Suggested Response API
+
+```text
+POST /suggest-response
+```
+
+This endpoint accepts a new customer message and returns:
+
+```text
+Predicted category
+Sentiment
+Sentiment score
+Frustration level
+Suggested agent response
+```
+
+This allows support agents to test new messages and quickly receive response suggestions.
+
+---
+
+## AI Processing Pipeline
+
+The AI processing pipeline is implemented in:
+
+```text
+ai_support_pipeline.py
+```
+
+The pipeline performs the following steps:
+
+```text
+Raw dataset loading
+Support-ticket enrichment
+Text cleaning
+Ticket categorization
+Sentiment detection
+Frustration detection
+Revenue impact calculation
+Suggested response generation
+Processed CSV storage
+```
+
+The input dataset is converted into a support-ticket format with fields such as:
+
+```text
+ticket_id
+timestamp
+customer_id
+channel
+message
+agent_reply
+product
+order_value
+customer_country
+resolution_status
+```
+
+The pipeline then adds AI-generated fields:
+
+```text
+clean_message
+predicted_category
+sentiment
+sentiment_score
+frustration_level
+suggested_response
+```
+
+---
+
+## Frontend Implementation
+
+The frontend was built using **Streamlit** in the file:
+
+```text
+app.py
+```
+
+Streamlit was chosen because it allows fast development of a working dashboard in Python. It is suitable for a prototype because it is simple to run and easy to demonstrate.
+
+The frontend communicates with the FastAPI backend using API calls.
+
+The dashboard includes the following pages:
+
+```text
+Backend Status
+Upload & Process Tickets
+Business Overview
+Top Issues
+Sentiment Trends
+Ticket Summaries
+Suggested Responses
+Live Response Generator
+```
+
+---
+
+## Dashboard Pages
+
+### 1. Backend Status
+
+This page checks whether the FastAPI backend is running.
+
+It displays the backend health status and shows the available API endpoints.
+
+### 2. Upload & Process Tickets
+
+This page allows the user to upload a CSV file and run the AI processing pipeline.
+
+If no file is uploaded, the backend can use the existing dataset in the project folder.
+
+### 3. Business Overview
+
+This page shows high-level business metrics, including:
+
+```text
+Total tickets
+Total revenue impact
+Top recurring keywords
+```
+
+These metrics help leadership quickly understand the overall support situation.
+
+### 4. Top Issues
+
+This page shows the most common customer issue categories using charts and tables.
+
+It also shows revenue impact by issue category, which helps identify which customer problems affect the business most.
+
+### 5. Sentiment Trends
+
+This page shows:
+
+```text
+Sentiment distribution
+Frustration level summary
+```
+
+This helps the company understand customer mood and identify high-frustration support areas.
+
+### 6. Ticket Summaries
+
+This page displays individual ticket details such as message, predicted category, sentiment, frustration level, status, order value, and suggested response.
+
+This helps support managers or agents inspect ticket-level information.
+
+### 7. Suggested Responses
+
+This page displays AI-generated suggested responses for existing tickets.
+
+The responses are based on the predicted ticket category and are written in a professional support tone.
+
+### 8. Live Response Generator
+
+This page allows a user to enter a new customer message manually.
+
+The backend then returns:
+
+```text
+Predicted category
+Sentiment
+Frustration level
+Suggested agent response
+```
+
+For example, if the user enters:
+
+```text
+My payment failed but money was deducted from my account.
+```
+
+The system identifies it as a payment-related issue and generates a suitable response for the support agent.
+
+The system also handles positive feedback. For example, if the user enters a positive review, the system categorizes it as Positive Feedback and gives a thank-you response.
+
+---
+
+## Requirement Mapping
+
+| Assignment Requirement      | Implementation                                       |
+| --------------------------- | ---------------------------------------------------- |
+| Backend                     | FastAPI backend in `backend_api.py`                  |
+| API for uploading tickets   | `POST /upload`                                       |
+| API for retrieving insights | `GET /insights`                                      |
+| AI processing pipeline      | `ai_support_pipeline.py` and `POST /process`         |
+| Frontend dashboard          | Streamlit app in `app.py`                            |
+| Top issues                  | Top Issues page                                      |
+| Sentiment trends            | Sentiment Trends page                                |
+| Ticket summaries            | Ticket Summaries page                                |
+| Suggested responses         | Suggested Responses page and Live Response Generator |
+
+---
+
+## Technology Used
+
+The software development part uses:
+
+```text
+Python
+FastAPI
+Uvicorn
+Streamlit
+pandas
+Plotly
+requests
+VADER Sentiment
+CSV storage
+```
+
+---
+
+## Why This Approach Was Chosen
+
+I chose **FastAPI** for the backend because it is fast, lightweight, and simple to use for REST API development in Python. It also automatically provides interactive API documentation through `/docs`, which makes testing the backend easier.
+
+I chose **Streamlit** for the frontend because it allows quick creation of dashboards and data apps using Python. This helped me build the frontend quickly while still showing all required features.
+
+I used **pandas** for reading, transforming, and summarizing CSV data.
+
+I used **Plotly** to create interactive charts for issue categories, revenue impact, sentiment, and frustration levels.
+
+I used **CSV storage** for this prototype because it is simple and enough for a one-day assignment demo. In a production system, I would replace CSV storage with a structured database such as PostgreSQL.
+
+---
+
+## Limitations and Future Improvements
+
+The current version is a working prototype. It uses CSV files for storage and rule-based AI logic for categorization.
+
+In a production version, I would improve it by adding:
+
+```text
+PostgreSQL database
+Authentication
+Role-based dashboard access
+Cloud deployment
+Docker deployment
+Logging and monitoring
+Background processing for large uploads
+LLM-based response generation
+Embedding-based similar ticket search
+Real-time streaming ticket ingestion
+```
+
+---
+
+## Final Summary
+
+For Question 2, I built a working software application for the SupportIQ project. The application includes a FastAPI backend with upload, processing, insights, ticket, and suggested-response APIs. It also includes a Streamlit frontend dashboard that shows business overview, top issues, sentiment and frustration trends, ticket summaries, suggested responses, and a live response generator.
+
+This completes the software development requirement by connecting the AI processing pipeline with a usable application interface for business users and support agents.

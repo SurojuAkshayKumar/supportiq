@@ -1,0 +1,9 @@
+pandas
+vaderSentiment
+scikit-learn
+fastapi
+uvicorn
+python-multipart
+streamlit
+plotly
+requests

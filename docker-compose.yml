@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: .
+    container_name: supportiq_backend
+    ports:
+      - "8000:8000"
+    command: python -m uvicorn backend_api:app --host 0.0.0.0 --port 8000
+    volumes:
+      - .:/app
+
+  frontend:
+    build: .
+    container_name: supportiq_frontend
+    ports:
+      - "8501:8501"
+    command: python -m streamlit run app.py
+    depends_on:
+      - backend
+    environment:
+      - API_URL=http://backend:8000
+    volumes:
+      - .:/app

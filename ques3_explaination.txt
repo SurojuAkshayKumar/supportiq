@@ -1,0 +1,52 @@
+Question 3: Data Pipeline
+
+For this part of the assignment, I implemented a reproducible data pipeline for the SupportIQ customer support insight platform.
+
+The pipeline follows this flow:
+
+Raw data → cleaning → enrichment → AI analysis → storage
+
+1. Raw Data:
+The raw dataset used in the project is spam_ham_dataset.csv. This dataset contains 5,171 email messages with spam/ham labels. Since the dataset is email-based, it is used as the base text dataset for customer support messages.
+
+2. Data Cleaning:
+The cleaning step is implemented in ai_support_pipeline.py using the clean_text() function. The function converts text to lowercase, removes unnecessary subject labels, removes URLs, removes special characters, and normalizes extra spaces. This prepares the text for categorization, sentiment analysis, and keyword extraction.
+
+3. Data Enrichment:
+The original dataset does not include all support-ticket fields required by the assignment. Therefore, the pipeline enriches the data by adding structured support-ticket fields such as ticket_id, timestamp, customer_id, channel, product, order_value, customer_country, and resolution_status.
+
+This converts the original email dataset into a customer-support-ticket style dataset.
+
+4. AI Analysis:
+After cleaning and enrichment, the pipeline performs AI/data analysis. It categorizes each ticket into a problem category, detects sentiment, calculates sentiment score, detects frustration level, extracts recurring issue keywords, calculates revenue impact, and generates suggested agent responses.
+
+The AI outputs include:
+- predicted_category
+- sentiment
+- sentiment_score
+- frustration_level
+- suggested_response
+
+5. Storage:
+The processed output is saved into processed_tickets.csv. In addition, I implemented a structured database storage step using SQLite. The database pipeline reads processed_tickets.csv and stores it in supportiq.db inside a tickets table.
+
+This satisfies the structured database requirement while keeping the prototype lightweight and easy to run.
+
+6. Ability to Process New Incoming Tickets:
+The project includes a FastAPI backend with /upload and /process endpoints. A user can upload a new CSV file through the API or dashboard, then run the processing pipeline again. The /suggest-response endpoint also allows a new customer message to be analyzed immediately.
+
+7. Reproducible Pipeline:
+The pipeline is reproducible because it can be run using clear commands:
+
+python ai_support_pipeline.py
+python database_pipeline.py
+
+The first command creates processed_tickets.csv, and the second command stores the processed data into supportiq.db.
+
+8. Batch vs Streaming Design:
+The current prototype uses batch processing. This means the system processes a CSV file containing many tickets at once. This is suitable for daily or weekly support analysis.
+
+In a production version, the system could support streaming or near-real-time processing. New tickets from chat, email, or web forms could be sent to a queue such as Kafka, RabbitMQ, or Redis Queue. Worker services could process each ticket as it arrives and store the result in the database immediately.
+
+Conclusion:
+The data pipeline successfully converts raw text data into structured, enriched, AI-analyzed support-ticket data. It supports repeatable processing, structured storage, and future extension to real-time ticket processing.
